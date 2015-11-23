@@ -1,0 +1,156 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.emelie.bookmanager.SummaryActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:id="@+id/nrOfBooks"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Books in your library"
+        android:id="@+id/nrLable"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_alignTop="@+id/nrOfBooks"
+        android:layout_toRightOf="@+id/nrOfBooks"
+        android:layout_toEndOf="@+id/nrOfBooks"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total cost:"
+        android:id="@+id/totalLable"
+        android:layout_below="@+id/nrOfBooks"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:id="@+id/totalCost"
+        android:textSize="24sp"
+        android:layout_above="@+id/expensiveLable"
+        android:layout_alignLeft="@+id/expensive"
+        android:layout_alignStart="@+id/expensive" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SEK"
+        android:id="@+id/sek1"
+        android:textSize="24sp"
+        android:layout_alignTop="@+id/totalCost"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Most expensive item:"
+        android:id="@+id/expensiveLable"
+        android:layout_below="@+id/totalLable"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:id="@+id/expensive"
+        android:textSize="24sp"
+        android:layout_alignTop="@+id/expensiveLable"
+        android:layout_toRightOf="@+id/cheapestLable"
+        android:layout_toEndOf="@+id/cheapestLable" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SEK"
+        android:id="@+id/sek2"
+        android:textSize="24sp"
+        android:layout_alignTop="@+id/expensive"
+        android:layout_alignLeft="@+id/sek1"
+        android:layout_alignStart="@+id/sek1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Least expensive item:"
+        android:id="@+id/cheapestLable"
+        android:layout_below="@+id/expensiveLable"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="22dp"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:id="@+id/cheapest"
+        android:textSize="24sp"
+        android:layout_alignTop="@+id/cheapestLable"
+        android:layout_alignLeft="@+id/expensive"
+        android:layout_alignStart="@+id/expensive" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SEK"
+        android:id="@+id/sek3"
+        android:textSize="24sp"
+        android:layout_alignTop="@+id/cheapest"
+        android:layout_alignLeft="@+id/sek2"
+        android:layout_alignStart="@+id/sek2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Average price:"
+        android:id="@+id/averageLable"
+        android:layout_below="@+id/cheapestLable"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="23dp"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:id="@+id/average"
+        android:textSize="24sp"
+        android:layout_alignTop="@+id/averageLable"
+        android:layout_toLeftOf="@+id/sek4"
+        android:layout_toStartOf="@+id/sek4"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SEK"
+        android:id="@+id/sek4"
+        android:textSize="24sp"
+        android:layout_alignTop="@+id/average"
+        android:layout_alignLeft="@+id/sek3"
+        android:layout_alignStart="@+id/sek3" />
+
+</RelativeLayout>
