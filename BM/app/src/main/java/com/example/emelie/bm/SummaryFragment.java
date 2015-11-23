@@ -24,6 +24,9 @@ public class SummaryFragment extends Fragment  {
    // private String mParam2;
 
 
+    TextView myTextView;
+
+
     // TODO: Rename and change types and number of parameters
     public static SummaryFragment newInstance(SimpleBookManager bookManager) {
         SummaryFragment fragment = new SummaryFragment();
@@ -48,19 +51,24 @@ public class SummaryFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+         View v = inflater.inflate(R.layout.activity_summary, container, false);
+
         if (getArguments() != null) {
             bookManager = (SimpleBookManager) getArguments().getSerializable(ARG_BOOKMANAGER);
-            //((TextView) getView().findViewById(R.id.nrOfBooks)).setText(String.valueOf(bookManager.count()));
-          //  ((TextView) getView().findViewById(R.id.totalCost)).setText(String.valueOf(bookManager.getTotalCost()));
-            //((TextView) getView().findViewById(R.id.expensive)).setText(String.valueOf(bookManager.getMaxPrice()));
-            //((TextView) getView().findViewById(R.id.cheapest)).setText(String.valueOf(bookManager.getMinPrice()));
-            //((TextView) getView().findViewById(R.id.average)).setText(String.valueOf(bookManager.getMeanPrice()));
+
+            ((TextView) v.findViewById(R.id.nrOfBooks)).setText(String.valueOf(bookManager.count()));
+            ((TextView) v.findViewById(R.id.totalCost)).setText(String.valueOf(bookManager.getTotalCost()));
+            ((TextView) v.findViewById(R.id.expensive)).setText(String.valueOf(bookManager.getMaxPrice()));
+            ((TextView) v.findViewById(R.id.cheapest)).setText(String.valueOf(bookManager.getMinPrice()));
+            ((TextView) v.findViewById(R.id.average)).setText(String.valueOf(bookManager.getMeanPrice()));
 
         }
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_summary, container, false);
 
+
+
+        // Inflate the layout for this fragment
+        return v;
     }
 
 
