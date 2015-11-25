@@ -1,20 +1,48 @@
 package com.example.emelie.bm;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
+import android.widget.TextView;
+
+
 
 /**
  * Created by emelie on 15-11-05.
  */
 public class SimpleBookManager implements BookManager,Serializable {
    private ArrayList<Book> bookList;
+    SharedPreferences sharedPreferences;
+    public static String MyPREFERENCES;
 
-    public SimpleBookManager() {
+    private static SimpleBookManager instance =null;
+
+
+    protected SimpleBookManager() {
        bookList= new ArrayList<Book>();
-        for (int i=0; i<5;i++){
+        MyPREFERENCES = "MyPrefs";
+       /* for (int i=0; i<5;i++){
             Book temp=createBook("A Andrews", "Tale of two cities", 100+i*i, "10387392","ABC123");
 
+        }*/
+    }
+
+    public static SimpleBookManager getInstance(){
+        if (instance==null){
+            instance=new SimpleBookManager();
         }
+        return instance;
     }
 
     public int count(){
@@ -65,9 +93,14 @@ public class SimpleBookManager implements BookManager,Serializable {
     }
     public int getMaxPrice(){
         int max= Integer.MIN_VALUE;
-        for (Book b:bookList) {
-            if(b.getPrice()>max){
-                max= b.getPrice();
+        if (bookList.size()==0){
+            max=0;
+        }
+        else{
+            for (Book b:bookList) {
+                if(b.getPrice()>max){
+                    max= b.getPrice();
+                }
             }
         }
         return max;
@@ -86,5 +119,59 @@ public class SimpleBookManager implements BookManager,Serializable {
         }
         return total;
     }
-    public void saveChanges(){}
+    public void saveChanges(Context context){
+
+        sharedPreferences = context.getSharedPreferences(MyPREFERENCES, context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(bookList);
+        editor.putString(MyPREFERENCES,json);
+        editor.commit();
+
+        UpdateSummaryView(context);
+
+
+
+
+
+        //LOAD
+        SharedPreferences sharedPreferences2;
+        sharedPreferences2 = context.getSharedPreferences(MyPREFERENCES, context.MODE_PRIVATE);
+        SharedPreferences.Editor editor2=sharedPreferences2.edit();
+        Gson gson2=new Gson();
+
+        String json2= sharedPreferences2.getString(MyPREFERENCES,"");
+        Type type = new TypeToken<ArrayList<Book>>(){}.getType();
+        ArrayList <Book> simple = gson2.fromJson(json2,type);
+        Log.d("save", simple.toString());
+    }
+
+    public void UpdateSummaryView(Context context){
+
+
+       // TextView nrOfBooksView = (TextView) ((Activity)context).findViewById(R.id.nrOfBooks);
+       /* TextView totalCostView = (TextView) ((Activity)context).findViewById(R.id.totalCost);
+        TextView expensiveView = (TextView) ((Activity)context).findViewById(R.id.expensive);
+        TextView cheapestView = (TextView) ((Activity)context).findViewById(R.id.cheapest);
+        TextView averageView = (TextView) ((Activity)context).findViewById(R.id.average);*/
+
+      //  nrOfBooksView.setText(String.valueOf(count()));
+       /* totalCostView.setText(String.valueOf(getTotalCost()));
+        expensiveView.setText(String.valueOf(getMaxPrice()));
+        cheapestView.setText(String.valueOf(getMinPrice()));
+        averageView.setText(String.valueOf(getMeanPrice()));*/
+
+/*
+        if (getArguments() != null) {
+            bookManager = (SimpleBookManager) getArguments().getSerializable(ARG_BOOKMANAGER);
+
+            ((TextView) v.findViewById(R.id.nrOfBooks)).setText(String.valueOf(bookManager.count()));
+            ((TextView) v.findViewById(R.id.totalCost)).setText(String.valueOf(bookManager.getTotalCost()));
+            ((TextView) v.findViewById(R.id.expensive)).setText(String.valueOf(bookManager.getMaxPrice()));
+            ((TextView) v.findViewById(R.id.cheapest)).setText(String.valueOf(bookManager.getMinPrice()));
+            ((TextView) v.findViewById(R.id.average)).setText(String.valueOf(bookManager.getMeanPrice()));
+
+        }*/
+    }
 }

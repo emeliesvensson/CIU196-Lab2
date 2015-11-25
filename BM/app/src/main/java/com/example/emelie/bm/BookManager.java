@@ -1,5 +1,7 @@
 package com.example.emelie.bm;
 
+import android.content.Context;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -17,5 +19,5 @@ public interface BookManager {
     public int getMaxPrice();
     public float getMeanPrice();
     public int getTotalCost();
-    public void saveChanges();
+    public void saveChanges(Context context);
 }

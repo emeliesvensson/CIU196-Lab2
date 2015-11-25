@@ -55,12 +55,8 @@ public class SummaryFragment extends Fragment  {
 
         if (getArguments() != null) {
             bookManager = (SimpleBookManager) getArguments().getSerializable(ARG_BOOKMANAGER);
+            updateTextViews(v);
 
-            ((TextView) v.findViewById(R.id.nrOfBooks)).setText(String.valueOf(bookManager.count()));
-            ((TextView) v.findViewById(R.id.totalCost)).setText(String.valueOf(bookManager.getTotalCost()));
-            ((TextView) v.findViewById(R.id.expensive)).setText(String.valueOf(bookManager.getMaxPrice()));
-            ((TextView) v.findViewById(R.id.cheapest)).setText(String.valueOf(bookManager.getMinPrice()));
-            ((TextView) v.findViewById(R.id.average)).setText(String.valueOf(bookManager.getMeanPrice()));
 
         }
 
@@ -69,6 +65,14 @@ public class SummaryFragment extends Fragment  {
 
         // Inflate the layout for this fragment
         return v;
+    }
+
+    public void updateTextViews(View v){
+        ((TextView) v.findViewById(R.id.nrOfBooks)).setText(String.valueOf(bookManager.count()));
+        ((TextView) v.findViewById(R.id.totalCost)).setText(String.valueOf(bookManager.getTotalCost()));
+        ((TextView) v.findViewById(R.id.expensive)).setText(String.valueOf(bookManager.getMaxPrice()));
+        ((TextView) v.findViewById(R.id.cheapest)).setText(String.valueOf(bookManager.getMinPrice()));
+        ((TextView) v.findViewById(R.id.average)).setText(String.valueOf(bookManager.getMeanPrice()));
     }
 
 
