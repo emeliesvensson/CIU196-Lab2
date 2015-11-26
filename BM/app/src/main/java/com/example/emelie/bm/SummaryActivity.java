@@ -15,7 +15,7 @@ public class SummaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
-        SimpleBookManager simpleBookManager =new SimpleBookManager();
+        SimpleBookManager simpleBookManager = SimpleBookManager.getInstance(getApplicationContext());
         Log.d("book", "created book in summary");
         ((TextView) findViewById(R.id.nrOfBooks)).setText(String.valueOf(simpleBookManager.count()));
         ((TextView) findViewById(R.id.totalCost)).setText(String.valueOf(simpleBookManager.getTotalCost()));

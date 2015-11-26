@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -18,6 +20,12 @@ public class SummaryFragment extends Fragment  {
   //  private static final String ARG_PARAM1 = "param1";
     //private static final String ARG_PARAM2 = "param2";
     private static final String ARG_BOOKMANAGER = "bookManager";
+
+    TextView textnrOfBooks;
+    TextView texttotalCost;
+    TextView textexpensive;
+    TextView textcheapest;
+    TextView textaverage;
 
     // TODO: Rename and change types of parameters
     private SimpleBookManager bookManager;
@@ -48,31 +56,45 @@ public class SummaryFragment extends Fragment  {
     }
 
     @Override
+    public void onResume(){
+        super.onResume();
+        updateTextViews();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
          View v = inflater.inflate(R.layout.activity_summary, container, false);
 
+         textnrOfBooks=((TextView) v.findViewById(R.id.nrOfBooks));
+         texttotalCost=((TextView) v.findViewById(R.id.totalCost));
+         textexpensive=((TextView) v.findViewById(R.id.expensive));
+         textcheapest=((TextView) v.findViewById(R.id.cheapest));
+         textaverage=((TextView) v.findViewById(R.id.average));
+
         if (getArguments() != null) {
             bookManager = (SimpleBookManager) getArguments().getSerializable(ARG_BOOKMANAGER);
-            updateTextViews(v);
+            updateTextViews();
+
 
 
         }
-
-
+      //  BookAdapter adapter = new BookAdapter(getContext(), bookManager.getAllBooks());
+     //   RelativeLayout listView = (RelativeLayout) v.findViewById(R.id.summaryLayout);
+        //listView.setAdapter(adapter);
 
 
         // Inflate the layout for this fragment
         return v;
     }
 
-    public void updateTextViews(View v){
-        ((TextView) v.findViewById(R.id.nrOfBooks)).setText(String.valueOf(bookManager.count()));
-        ((TextView) v.findViewById(R.id.totalCost)).setText(String.valueOf(bookManager.getTotalCost()));
-        ((TextView) v.findViewById(R.id.expensive)).setText(String.valueOf(bookManager.getMaxPrice()));
-        ((TextView) v.findViewById(R.id.cheapest)).setText(String.valueOf(bookManager.getMinPrice()));
-        ((TextView) v.findViewById(R.id.average)).setText(String.valueOf(bookManager.getMeanPrice()));
+    public void updateTextViews(){
+        textnrOfBooks.setText(String.valueOf(bookManager.count()));
+        texttotalCost.setText(String.valueOf(bookManager.getTotalCost()));
+        textexpensive.setText(String.valueOf(bookManager.getMaxPrice()));
+        textcheapest.setText(String.valueOf(bookManager.getMinPrice()));
+        textaverage.setText(String.valueOf(bookManager.getMeanPrice()));
     }
 
 

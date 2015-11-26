@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        simpleBookManager =new SimpleBookManager();
-
+        simpleBookManager = SimpleBookManager.getInstance(getApplicationContext());
+       // simpleBookManager.Load();
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();

@@ -3,6 +3,7 @@ package com.example.emelie.bm;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -23,24 +24,29 @@ import android.widget.TextView;
  */
 public class SimpleBookManager implements BookManager,Serializable {
    private ArrayList<Book> bookList;
-    SharedPreferences sharedPreferences;
-    public static String MyPREFERENCES;
+    private SharedPreferences sharedPreferences;
+    public static String BOOKPREFERENCES;
 
     private static SimpleBookManager instance =null;
+    private static Context context;
 
 
     protected SimpleBookManager() {
        bookList= new ArrayList<Book>();
-        MyPREFERENCES = "MyPrefs";
+        BOOKPREFERENCES = "MyPrefs";
+
+
        /* for (int i=0; i<5;i++){
             Book temp=createBook("A Andrews", "Tale of two cities", 100+i*i, "10387392","ABC123");
 
         }*/
     }
 
-    public static SimpleBookManager getInstance(){
+    public static SimpleBookManager getInstance(Context c ){
         if (instance==null){
+            context=c;
             instance=new SimpleBookManager();
+
         }
         return instance;
     }
@@ -119,59 +125,22 @@ public class SimpleBookManager implements BookManager,Serializable {
         }
         return total;
     }
-    public void saveChanges(Context context){
+    public void saveChanges(){
 
-        sharedPreferences = context.getSharedPreferences(MyPREFERENCES, context.MODE_PRIVATE);
-
+         //context.getSharedPreferences(MyPREFERENCES, context.MODE_PRIVATE);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(bookList);
-        editor.putString(MyPREFERENCES,json);
+        editor.putString(BOOKPREFERENCES, json);
         editor.commit();
 
-        UpdateSummaryView(context);
-
-
-
-
-
-        //LOAD
-        SharedPreferences sharedPreferences2;
-        sharedPreferences2 = context.getSharedPreferences(MyPREFERENCES, context.MODE_PRIVATE);
-        SharedPreferences.Editor editor2=sharedPreferences2.edit();
-        Gson gson2=new Gson();
-
-        String json2= sharedPreferences2.getString(MyPREFERENCES,"");
-        Type type = new TypeToken<ArrayList<Book>>(){}.getType();
-        ArrayList <Book> simple = gson2.fromJson(json2,type);
-        Log.d("save", simple.toString());
     }
 
-    public void UpdateSummaryView(Context context){
-
-
-       // TextView nrOfBooksView = (TextView) ((Activity)context).findViewById(R.id.nrOfBooks);
-       /* TextView totalCostView = (TextView) ((Activity)context).findViewById(R.id.totalCost);
-        TextView expensiveView = (TextView) ((Activity)context).findViewById(R.id.expensive);
-        TextView cheapestView = (TextView) ((Activity)context).findViewById(R.id.cheapest);
-        TextView averageView = (TextView) ((Activity)context).findViewById(R.id.average);*/
-
-      //  nrOfBooksView.setText(String.valueOf(count()));
-       /* totalCostView.setText(String.valueOf(getTotalCost()));
-        expensiveView.setText(String.valueOf(getMaxPrice()));
-        cheapestView.setText(String.valueOf(getMinPrice()));
-        averageView.setText(String.valueOf(getMeanPrice()));*/
-
-/*
-        if (getArguments() != null) {
-            bookManager = (SimpleBookManager) getArguments().getSerializable(ARG_BOOKMANAGER);
-
-            ((TextView) v.findViewById(R.id.nrOfBooks)).setText(String.valueOf(bookManager.count()));
-            ((TextView) v.findViewById(R.id.totalCost)).setText(String.valueOf(bookManager.getTotalCost()));
-            ((TextView) v.findViewById(R.id.expensive)).setText(String.valueOf(bookManager.getMaxPrice()));
-            ((TextView) v.findViewById(R.id.cheapest)).setText(String.valueOf(bookManager.getMinPrice()));
-            ((TextView) v.findViewById(R.id.average)).setText(String.valueOf(bookManager.getMeanPrice()));
-
-        }*/
+    public void Load(){
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String json2= sharedPreferences.getString(BOOKPREFERENCES,"");
+        Type type = new TypeToken<ArrayList<Book>>(){}.getType();
+        ArrayList <Book> simple = new Gson().fromJson(json2,type);
     }
 }

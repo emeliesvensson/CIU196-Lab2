@@ -15,9 +15,10 @@ import java.util.ArrayList;
 public class BookAdapter extends ArrayAdapter<Book> {
     SimpleBookManager bookManager;
 
-    public BookAdapter(Context context, ArrayList<Book> users) {
-        super(context, 0, users);
-        bookManager=SimpleBookManager.getInstance();
+    public BookAdapter(Context context, ArrayList<Book> books) {
+        super(context, 0, books);
+        bookManager=SimpleBookManager.getInstance(getContext());
+
     }
 
     @Override

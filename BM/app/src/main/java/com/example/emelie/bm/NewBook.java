@@ -26,7 +26,7 @@ public class NewBook extends AppCompatActivity {
         mIsbn=(EditText)findViewById(R.id.isbnInput);
         mPrice=(EditText)findViewById(R.id.priceInput);
         mCourse=(EditText)findViewById(R.id.courseInput);
-        bookmanager =SimpleBookManager.getInstance();
+        bookmanager =SimpleBookManager.getInstance(getApplicationContext());
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,7 +54,7 @@ public class NewBook extends AppCompatActivity {
                 String course=mCourse.getText().toString();
                 bookmanager.createBook(author, title, price, isbn, course);
 
-               bookmanager.saveChanges(getApplicationContext());
+               bookmanager.saveChanges();
 
                 finish();
             }else{

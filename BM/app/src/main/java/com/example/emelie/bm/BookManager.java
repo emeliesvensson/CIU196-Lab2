@@ -19,5 +19,5 @@ public interface BookManager {
     public int getMaxPrice();
     public float getMeanPrice();
     public int getTotalCost();
-    public void saveChanges(Context context);
+    public void saveChanges();
 }
