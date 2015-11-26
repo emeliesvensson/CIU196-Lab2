@@ -1,9 +1,13 @@
 package com.example.emelie.bm;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 //import android.app.Fragment;
@@ -22,6 +26,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
 
     /**
@@ -39,14 +46,29 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
      */
     ViewPager mViewPager;
     private SimpleBookManager simpleBookManager;
+    private SharedPreferences sharedPreferences;
+    public static String BOOKPREFERENCES;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        BOOKPREFERENCES = "MyPrefs";
         simpleBookManager = SimpleBookManager.getInstance(getApplicationContext());
-       // simpleBookManager.Load();
+        //simpleBookManager.Load();
+//Load
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        // SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson =new Gson();
+        String json2= sharedPreferences.getString(BOOKPREFERENCES,"");
+        Type type = new TypeToken<ArrayList<Book>>(){}.getType();
+        ArrayList <Book> simple = gson.fromJson(json2, type);
+
+        if (simple !=null) {
+            simpleBookManager.setBookList(simple);
+        }
+//
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();

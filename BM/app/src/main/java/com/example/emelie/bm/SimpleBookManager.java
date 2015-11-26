@@ -24,7 +24,6 @@ import android.widget.TextView;
  */
 public class SimpleBookManager implements BookManager,Serializable {
    private ArrayList<Book> bookList;
-    private SharedPreferences sharedPreferences;
     public static String BOOKPREFERENCES;
 
     private static SimpleBookManager instance =null;
@@ -125,10 +124,10 @@ public class SimpleBookManager implements BookManager,Serializable {
         }
         return total;
     }
-    public void saveChanges(){
+    public void saveChanges(Context context){
 
          //context.getSharedPreferences(MyPREFERENCES, context.MODE_PRIVATE);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(bookList);
@@ -137,10 +136,16 @@ public class SimpleBookManager implements BookManager,Serializable {
 
     }
 
-    public void Load(){
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+    public void setBookList(ArrayList<Book> b){
+        bookList=b;
+    }
+
+    public void load(Context context){
+/*
+        Gson gson =new Gson();
         String json2= sharedPreferences.getString(BOOKPREFERENCES,"");
         Type type = new TypeToken<ArrayList<Book>>(){}.getType();
-        ArrayList <Book> simple = new Gson().fromJson(json2,type);
+        ArrayList <Book> simple = gson.fromJson(json2, type);*/
+
     }
 }

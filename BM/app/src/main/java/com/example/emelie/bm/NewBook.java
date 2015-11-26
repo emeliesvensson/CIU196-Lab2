@@ -54,7 +54,7 @@ public class NewBook extends AppCompatActivity {
                 String course=mCourse.getText().toString();
                 bookmanager.createBook(author, title, price, isbn, course);
 
-               bookmanager.saveChanges();
+               bookmanager.saveChanges(getApplicationContext());
 
                 finish();
             }else{
