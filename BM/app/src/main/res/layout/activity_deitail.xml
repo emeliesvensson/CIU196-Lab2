@@ -102,9 +102,12 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="SEK"
         android:id="@+id/sek"
-        android:layout_alignTop="@+id/price"
-        android:layout_toRightOf="@+id/course"
-        android:layout_toEndOf="@+id/course" />
+        android:layout_alignBaseline="@+id/price"
+        android:layout_alignBottom="@+id/price"
+        android:layout_toRightOf="@+id/price"
+        android:layout_toEndOf="@+id/price"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="11dp" />
 
     <TextView
         android:layout_width="wrap_content"

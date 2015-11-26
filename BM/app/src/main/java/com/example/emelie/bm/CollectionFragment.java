@@ -20,6 +20,7 @@ public class CollectionFragment extends Fragment  {
 
     private static final String ARG_BOOKMANAGER = "bookManager";
     private SimpleBookManager bookManager;
+    ArrayAdapter<Book> bookAdapter;
 
 
     // TODO: Rename and change types and number of parameters
@@ -47,7 +48,7 @@ public class CollectionFragment extends Fragment  {
                              Bundle savedInstanceState) {
         bookManager = SimpleBookManager.getInstance(getContext());
         View v = inflater.inflate(R.layout.fragment_collection, container, false);
-        ArrayAdapter<Book> bookAdapter =new ArrayAdapter<Book>(getContext(),R.layout.activity_single_book,R.id.bookTitleText,bookManager.getAllBooks());
+        bookAdapter =new ArrayAdapter<Book>(getContext(),R.layout.activity_single_book,R.id.bookTitleText,bookManager.getAllBooks());
 
         final ListView listView = (ListView) v.findViewById(R.id.listViewBooks);
         listView.setAdapter(bookAdapter);
@@ -55,15 +56,22 @@ public class CollectionFragment extends Fragment  {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String main = bookManager.getAllBooks().get(position).toString();
-                Log.d("bookk", main);
+               // String main = bookManager.getAllBooks().get(position).toString();
+              //  Log.d("bookk", main);
 
-              //  Intent i = new Intent("com.example.emelie.bm.SingleBook");
-                //i.putExtra("pos",position);
-                //startActivity(i);
+                Intent i = new Intent("com.example.emelie.bm.SingleBook");
+                i.putExtra("pos",position);
+                startActivity(i);
             }
         });
 
         return v;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        bookAdapter.notifyDataSetChanged();
+
     }
 }

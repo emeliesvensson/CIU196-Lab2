@@ -26,6 +26,20 @@
         <activity
             android:name=".SingleBook"
             android:label="@string/title_activity_single_book" >
+            <intent-filter>
+                <action android:name="com.example.emelie.bm.SingleBook" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".EditBook"
+            android:label="@string/title_activity_edit_book" >
+            <intent-filter>
+                <action android:name="com.example.emelie.bm.EditBook" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 
