@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             if (position==0){
-                return PlaceholderFragment.newInstance(position + 1);
+                return CollectionFragment.newInstance(simpleBookManager);
             } else if(position ==1){
                 //return PlaceholderFragment.newInstance(position + 1);
                 return SummaryFragment.newInstance(simpleBookManager);

@@ -10,7 +10,7 @@ public class SingleBook extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single_book);
+        setContentView(R.layout.activity_deitail);
     }
 
     @Override

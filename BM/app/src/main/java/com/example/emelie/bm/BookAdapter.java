@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -27,15 +28,20 @@ public class BookAdapter extends ArrayAdapter<Book> {
         Book book = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_summary, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_single_book, parent, false);
         }
         // Lookup view for data population
-        TextView nrOfBooks = (TextView) convertView.findViewById(R.id.nrOfBooks);
+       /* TextView nrOfBooks = (TextView) convertView.findViewById(R.id.nrOfBooks);
         TextView totalCost = (TextView) convertView.findViewById(R.id.totalCost);
         // Populate the data into the template view using the data object
         nrOfBooks.setText(String.valueOf(bookManager.count()));
-        totalCost.setText(String.valueOf(bookManager.getTotalCost()));
+        totalCost.setText(String.valueOf(bookManager.getTotalCost()));*/
         // Return the completed view to render on screen
         return convertView;
     }
+
+    /*@Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l){
+
+    }*/
 }

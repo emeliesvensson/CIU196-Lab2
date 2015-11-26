@@ -69,4 +69,8 @@ public class Book implements Serializable {
     public void setCourse(String course) {
         this.course = course;
     }
+    @Override
+    public String toString(){
+        return title;
+    }
 }
