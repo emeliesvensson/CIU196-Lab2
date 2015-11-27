@@ -43,7 +43,15 @@ int pos;
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save) {
             Log.d("save", "saved");
-            if (!((EditText) findViewById(R.id.titleInput)).getText().toString().equals("")) {
+            if (((EditText) findViewById(R.id.titleInput)).getText().toString().equals("")){
+                Toast toast = Toast.makeText(getApplicationContext(), "You have to fill in the title", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else if (((EditText) findViewById(R.id.priceInput)).getText().toString().equals("")){
+                Toast toast = Toast.makeText(getApplicationContext(), "You have to fill in the price", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else{
                 String author =((EditText) findViewById(R.id.authorInput)).getText().toString();
                 String title=((EditText) findViewById(R.id.titleInput)).getText().toString();
                 int price=Integer.parseInt(((EditText) findViewById(R.id.priceInput)).getText().toString());
@@ -57,9 +65,6 @@ int pos;
                 bookManager.saveChanges(getApplicationContext());
 
                 finish();
-            }else{
-                Toast toast = Toast.makeText(getApplicationContext(), "The title is empty", Toast.LENGTH_SHORT);
-                toast.show();
             }
             return true;
         }
