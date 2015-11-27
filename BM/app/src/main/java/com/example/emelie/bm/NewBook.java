@@ -43,7 +43,15 @@ public class NewBook extends AppCompatActivity {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save) {
-            if (!mTitle.getText().toString().equals("")) {
+            if (mTitle.getText().toString().equals("")){
+                Toast toast = Toast.makeText(getApplicationContext(), "You have to fill in the title", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else if(mPrice.getText().toString().equals("")){
+                Toast toast = Toast.makeText(getApplicationContext(), "You have to fill in the price", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else {
                 String author =mAuthor.getText().toString();
                 String title=mTitle.getText().toString();
                 int price=Integer.parseInt(mPrice.getText().toString());
@@ -54,10 +62,10 @@ public class NewBook extends AppCompatActivity {
                bookmanager.saveChanges(getApplicationContext());
 
                 finish();
-            }else{
-                Toast toast = Toast.makeText(getApplicationContext(), "The title is empty", Toast.LENGTH_SHORT);
-                toast.show();
             }
+
+
+
             return true;
         }
 
