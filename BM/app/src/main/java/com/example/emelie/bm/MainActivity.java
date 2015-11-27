@@ -185,8 +185,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                     return "Collection".toUpperCase(l);
                 case 1:
                     return "Summary".toUpperCase(l);
-                case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
+
             }
             return null;
         }
