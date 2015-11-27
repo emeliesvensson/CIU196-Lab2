@@ -18,8 +18,7 @@ public class SingleBook extends AppCompatActivity {
         setContentView(R.layout.activity_deitail);
         bookManager=SimpleBookManager.getInstance(getApplicationContext());
 
-        //int pos =savedInstanceState.getInt("pos");
-         pos = getIntent().getIntExtra("pos",-1);
+        pos = getIntent().getIntExtra("pos",-1);
 
         ((TextView) findViewById(R.id.title)).setText(String.valueOf(bookManager.getAllBooks().get(pos).getTitle()));
         ((TextView) findViewById(R.id.author)).setText(String.valueOf(bookManager.getAllBooks().get(pos).getAuthor()));

@@ -4,14 +4,12 @@ package com.example.emelie.bm;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 /**
  * Created by emelie on 15-11-26.
@@ -56,8 +54,6 @@ public class CollectionFragment extends Fragment  {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               // String main = bookManager.getAllBooks().get(position).toString();
-              //  Log.d("bookk", main);
 
                 Intent i = new Intent("com.example.emelie.bm.SingleBook");
                 i.putExtra("pos",position);

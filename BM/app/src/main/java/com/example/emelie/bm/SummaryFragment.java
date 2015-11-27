@@ -1,15 +1,10 @@
 package com.example.emelie.bm;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
-//import android.app.Fragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -17,8 +12,7 @@ import android.widget.TextView;
 public class SummaryFragment extends Fragment  {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-  //  private static final String ARG_PARAM1 = "param1";
-    //private static final String ARG_PARAM2 = "param2";
+
     private static final String ARG_BOOKMANAGER = "bookManager";
 
     TextView textnrOfBooks;
@@ -29,10 +23,6 @@ public class SummaryFragment extends Fragment  {
 
     // TODO: Rename and change types of parameters
     private SimpleBookManager bookManager;
-   // private String mParam2;
-
-
-    TextView myTextView;
 
 
     // TODO: Rename and change types and number of parameters
@@ -80,12 +70,7 @@ public class SummaryFragment extends Fragment  {
 
 
         }
-      //  BookAdapter adapter = new BookAdapter(getContext(), bookManager.getAllBooks());
-     //   RelativeLayout listView = (RelativeLayout) v.findViewById(R.id.summaryLayout);
-        //listView.setAdapter(adapter);
 
-
-        // Inflate the layout for this fragment
         return v;
     }
 

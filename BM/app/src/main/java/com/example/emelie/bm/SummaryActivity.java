@@ -2,12 +2,10 @@ package com.example.emelie.bm;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import java.io.Serializable;
 
 public class SummaryActivity extends AppCompatActivity {
 
@@ -16,7 +14,6 @@ public class SummaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
         SimpleBookManager simpleBookManager = SimpleBookManager.getInstance(getApplicationContext());
-        Log.d("book", "created book in summary");
         ((TextView) findViewById(R.id.nrOfBooks)).setText(String.valueOf(simpleBookManager.count()));
         ((TextView) findViewById(R.id.totalCost)).setText(String.valueOf(simpleBookManager.getTotalCost()));
         ((TextView) findViewById(R.id.expensive)).setText(String.valueOf(simpleBookManager.getMaxPrice()));

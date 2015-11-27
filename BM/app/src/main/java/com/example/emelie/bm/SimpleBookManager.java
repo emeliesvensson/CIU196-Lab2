@@ -34,11 +34,6 @@ public class SimpleBookManager implements BookManager,Serializable {
        bookList= new ArrayList<Book>();
         BOOKPREFERENCES = "MyPrefs";
 
-
-       /* for (int i=0; i<5;i++){
-            Book temp=createBook("A Andrews", "Tale of two cities", 100+i*i, "10387392","ABC123");
-
-        }*/
     }
 
     public static SimpleBookManager getInstance(Context c ){
@@ -75,9 +70,6 @@ public class SimpleBookManager implements BookManager,Serializable {
         bookList.remove(book);
     }
     public void moveBook (int from, int to){
-        //Book temp =bookList.get(to) ;
-        //bookList.set(to,bookList.get(from));
-        //bookList.set(from,temp);
 
         Book temp =bookList.get(from);
         bookList.remove(from);
@@ -125,8 +117,6 @@ public class SimpleBookManager implements BookManager,Serializable {
         return total;
     }
     public void saveChanges(Context context){
-
-         //context.getSharedPreferences(MyPREFERENCES, context.MODE_PRIVATE);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
@@ -140,12 +130,4 @@ public class SimpleBookManager implements BookManager,Serializable {
         bookList=b;
     }
 
-    public void load(Context context){
-/*
-        Gson gson =new Gson();
-        String json2= sharedPreferences.getString(BOOKPREFERENCES,"");
-        Type type = new TypeToken<ArrayList<Book>>(){}.getType();
-        ArrayList <Book> simple = gson.fromJson(json2, type);*/
-
-    }
 }

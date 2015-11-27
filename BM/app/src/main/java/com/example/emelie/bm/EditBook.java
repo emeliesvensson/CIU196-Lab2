@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class EditBook extends AppCompatActivity {
@@ -45,7 +44,6 @@ int pos;
         if (id == R.id.action_save) {
             Log.d("save", "saved");
             if (!((EditText) findViewById(R.id.titleInput)).getText().toString().equals("")) {
-                //savechanges
                 String author =((EditText) findViewById(R.id.authorInput)).getText().toString();
                 String title=((EditText) findViewById(R.id.titleInput)).getText().toString();
                 int price=Integer.parseInt(((EditText) findViewById(R.id.priceInput)).getText().toString());

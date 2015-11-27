@@ -1,6 +1,5 @@
 package com.example.emelie.bm;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,9 +43,7 @@ public class NewBook extends AppCompatActivity {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save) {
-            Log.d("save", "saved");
             if (!mTitle.getText().toString().equals("")) {
-                //savechanges
                 String author =mAuthor.getText().toString();
                 String title=mTitle.getText().toString();
                 int price=Integer.parseInt(mPrice.getText().toString());
